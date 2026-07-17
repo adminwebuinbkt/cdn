@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDN TIPD UIN Bukittinggi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: #0b0f19;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(14, 165, 233, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.08) 0%, transparent 60%);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Grid Background Pattern */
+        .grid-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: 50px 50px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Subtle glowing dots in background */
+        .glow-dot {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 1;
+        }
+        .dot-1 {
+            width: 300px;
+            height: 300px;
+            background: rgba(14, 165, 233, 0.25);
+            top: 20%;
+            left: 10%;
+        }
+        .dot-2 {
+            width: 350px;
+            height: 350px;
+            background: rgba(99, 102, 241, 0.2);
+            bottom: 15%;
+            right: 10%;
+        }
+
+        /* Card Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 900px;
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: rgba(17, 24, 39, 0.5);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 28px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                        0 0 40px rgba(14, 165, 233, 0.1);
+        }
+
+        /* Vector Illustration Styling */
+        .illustration-wrapper {
+            width: 100%;
+            max-width: 480px;
+            height: auto;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3));
+        }
+
+        /* Floating Animations */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(1deg); }
+        }
+
+        @keyframes floatFast {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-8px) scale(1.03); }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.1); }
+        }
+
+        @keyframes dash {
+            to { stroke-dashoffset: -40; }
+        }
+
+        .floating-main {
+            animation: floatSlow 6s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        .floating-node-1 {
+            animation: floatFast 4s ease-in-out infinite;
+            animation-delay: 0s;
+        }
+
+        .floating-node-2 {
+            animation: floatFast 4.5s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        .floating-node-3 {
+            animation: floatFast 5s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+
+        .pulse-light {
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        .network-line {
+            stroke-dasharray: 6, 6;
+            animation: dash 3s linear infinite;
+        }
+
+        /* Typography */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: rgba(14, 165, 233, 0.12);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            border-radius: 9999px;
+            color: #38bdf8;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #10b981;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.subtitle {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: #94a3b8;
+            font-weight: 400;
+            max-width: 540px;
+            line-height: 1.6;
+        }
+
+        /* Footer Accent */
+        .footer-tag {
+            margin-top: 2.5rem;
+            font-size: 0.85rem;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-tag span {
+            color: #38bdf8;
+            font-weight: 600;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 2rem 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="grid-bg"></div>
+    <div class="glow-dot dot-1"></div>
+    <div class="glow-dot dot-2"></div>
+
+    <main class="container">
+        
+        <!-- Animated Floating Computer & Network Vector SVG -->
+        <div class="illustration-wrapper">
+            <svg viewBox="0 0 500 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <!-- Gradients -->
+                    <linearGradient id="screenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#1e293b"/>
+                        <stop offset="100%" stop-color="#0f172a"/>
+                    </linearGradient>
+                    
+                    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#38bdf8"/>
+                        <stop offset="100%" stop-color="#6366f1"/>
+                    </linearGradient>
+
+                    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#34d399"/>
+                        <stop offset="100%" stop-color="#10b981"/>
+                    </linearGradient>
+
+                    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="8" result="blur" />
+                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                    </filter>
+                </defs>
+
+                <!-- Cloud Network Top -->
+                <g class="floating-node-1">
+                    <path d="M220 70 C220 55, 235 45, 250 45 C260 35, 280 35, 290 45 C305 45, 315 55, 315 70 C325 75, 325 90, 315 100 C315 105, 220 105, 220 70 Z" 
+                          fill="url(#primaryGrad)" opacity="0.15" />
+                    <path d="M225 72 C225 60, 238 50, 250 50 C258 42, 275 42, 283 50 C295 50, 305 60, 305 72 C312 76, 312 88, 305 95 C300 98, 225 98, 225 72 Z" 
+                          fill="none" stroke="url(#primaryGrad)" stroke-width="2" />
+                    <circle cx="265" cy="72" r="6" fill="#38bdf8" class="pulse-light" />
+                </g>
+
+                <!-- Floating Network Nodes (Left & Right) -->
+                <!-- Left Server Node -->
+                <g class="floating-node-2">
+                    <rect x="70" y="140" width="70" height="50" rx="10" fill="#1e293b" stroke="url(#primaryGrad)" stroke-width="2"/>
+                    <line x1="85" y1="155" x2="115" y2="155" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="85" y1="168" x2="105" y2="168" stroke="#64748b" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="125" cy="161" r="3" fill="#10b981" />
+                </g>
+
+                <!-- Right Database Node -->
+                <g class="floating-node-3">
+                    <path d="M360 150 C360 142, 420 142, 420 150 L420 180 C420 188, 360 188, 360 180 Z" fill="#1e293b" stroke="url(#primaryGrad)" stroke-width="2"/>
+                    <path d="M360 150 C360 158, 420 158, 420 150" fill="none" stroke="url(#primaryGrad)" stroke-width="2"/>
+                    <path d="M360 165 C360 173, 420 173, 420 165" fill="none" stroke="url(#primaryGrad)" stroke-width="2"/>
+                    <circle cx="390" cy="175" r="3" fill="#38bdf8" />
+                </g>
+
+                <!-- Connection Lines with Motion -->
+                <path class="network-line" d="M140 165 L190 200" stroke="#38bdf8" stroke-width="2" opacity="0.6"/>
+                <path class="network-line" d="M360 165 L310 200" stroke="#38bdf8" stroke-width="2" opacity="0.6"/>
+                <path class="network-line" d="M265 98 L265 150" stroke="#6366f1" stroke-width="2" opacity="0.6"/>
+
+                <!-- Main Computer / Server (Center Floating) -->
+                <g class="floating-main">
+                    <!-- Computer Monitor Stand -->
+                    <rect x="235" y="290" width="30" height="35" fill="#334155" />
+                    <path d="M200 325 L300 325 L290 332 L210 332 Z" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+                    
+                    <!-- Monitor Outer Frame -->
+                    <rect x="150" y="150" width="200" height="140" rx="14" fill="#0f172a" stroke="url(#primaryGrad)" stroke-width="3" filter="url(#glow)"/>
+                    
+                    <!-- Screen Inner -->
+                    <rect x="160" y="160" width="180" height="120" rx="8" fill="url(#screenGrad)" />
+                    
+                    <!-- Code / Data Visuals on Screen -->
+                    <rect x="175" y="178" width="60" height="6" rx="3" fill="#38bdf8" opacity="0.8"/>
+                    <rect x="242" y="178" width="40" height="6" rx="3" fill="#6366f1" opacity="0.6"/>
+                    
+                    <rect x="175" y="195" width="110" height="5" rx="2.5" fill="#475569" />
+                    <rect x="175" y="208" width="85" height="5" rx="2.5" fill="#475569" />
+
+                    <!-- Central CDN Globe Concept on Screen -->
+                    <circle cx="280" cy="225" r="22" fill="none" stroke="url(#accentGrad)" stroke-width="2"/>
+                    <ellipse cx="280" cy="225" rx="22" ry="9" fill="none" stroke="url(#accentGrad)" stroke-width="1.5" stroke-dasharray="3,3"/>
+                    <ellipse cx="280" cy="225" rx="9" ry="22" fill="none" stroke="url(#accentGrad)" stroke-width="1.5"/>
+                    <circle cx="280" cy="225" r="4" fill="#34d399" class="pulse-light"/>
+
+                    <!-- Bottom Status Bar on Screen -->
+                    <line x1="160" y1="260" x2="340" y2="260" stroke="#1e293b" stroke-width="2"/>
+                    <circle cx="175" cy="269" r="3" fill="#10b981" />
+                    <rect x="184" y="267" width="45" height="4" rx="2" fill="#64748b" />
+                </g>
+
+                <!-- Decorative Floating Data Particles -->
+                <circle cx="180" cy="110" r="4" fill="#38bdf8" class="pulse-light" style="animation-delay: 0.5s;"/>
+                <circle cx="330" cy="120" r="3" fill="#34d399" class="pulse-light" style="animation-delay: 1.2s;"/>
+                <circle cx="120" cy="250" r="5" fill="#6366f1" class="pulse-light" style="animation-delay: 0.8s;"/>
+                <circle cx="370" cy="240" r="4" fill="#38bdf8" class="pulse-light" style="animation-delay: 1.5s;"/>
+            </svg>
+        </div>
+
+        <!-- Content Section -->
+        <div class="badge">
+            <span class="badge-dot"></span> High Performance Network
+        </div>
+
+        <h1>CDN TIPD UIN Bukittinggi</h1>
+
+        <p class="subtitle">
+            Jaringan Distribusi Konten Resmi UIN Sjech M. Djamil Djambek Bukittinggi. Mengoptimalkan Kecepatan, Keandalan, dan Aksesibilitas Layanan Digital Kampus.
+        </p>
+
+        <div class="footer-tag">
+            Dikelola oleh <span>TIPD UIN Bukittinggi</span>
+        </div>
+
+    </main>
+
+</body>
+</html>
